@@ -13,7 +13,7 @@ RUN echo "ALL            ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ## create the non-root user and configure to use the correct directory 
 RUN useradd -ms /bin/bash docker-user
-RUN usermod -aG docker-user wheel
+RUN usermod -aG wheel docker-user
 USER docker-user
 WORKDIR /home/docker-user
 
