@@ -1,7 +1,8 @@
 FROM rockylinux:8.5
 
 ## update the container and install core utils as root
-RUN dnf update --no-cache -y
+RUN dnf clean all
+RUN dnf update -y
 
 ## add epel repo first
 RUN dnf install -y epel-release
