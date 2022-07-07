@@ -6,7 +6,7 @@ RUN dnf update -y
 RUN dnf install -y epel-release
 
 ## install core cli utils
-RUN dnf install -y epel-release git unzip tree sudo awscli wget ansible
+RUN dnf install -y git unzip tree sudo awscli wget ansible
 
 ## enable passwordless sudo for different users in the container
 RUN echo "ALL            ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
