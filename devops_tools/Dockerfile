@@ -1,8 +1,9 @@
 FROM rockylinux:8.5
 
-## update the container and install core utils as root
+## update the container and install epel-release
 RUN dnf clean all
 RUN dnf update -y
+RUN dnf install -y epel-release
 
 ## install core cli utils
 RUN dnf install -y epel-release git unzip tree sudo awscli wget ansible
