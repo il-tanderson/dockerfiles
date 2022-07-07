@@ -4,18 +4,14 @@ FROM rockylinux:8.5
 RUN dnf clean all
 RUN dnf update -y
 
-## add epel repo first
-RUN dnf install -y epel-release
-
 ## install core cli utils
-RUN dnf install -y git unzip tree sudo awscli wget
+RUN dnf install -y epel-release git unzip tree sudo awscli wget ansible
 
 ## enable passwordless sudo for different users in the container
 RUN echo "ALL            ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ## create the non-root user and configure to use the correct directory 
-RUN useradd -ms /bin/bash docker-user
-RUN usermod -aG wheel docker-user
+RUN useradd -ms /bin/bash docker-user && usermod -aG wheel docker-user
 USER docker-user
 WORKDIR /home/docker-user
 
@@ -34,5 +30,3 @@ RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
-## install ansible 
-RUN dnf install -y ansible 
